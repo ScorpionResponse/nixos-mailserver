@@ -1,4 +1,8 @@
 { config, pkgs, ... }:
+
+let 
+  secrets = import ./secrets.nix;
+in
 {
   imports = [
     (builtins.fetchTarball {
@@ -25,7 +29,7 @@
     ];
     loginAccounts = {
         "moss.paul@scorpionresponse.email" = {
-            hashedPassword = "NOTREALLYLOL";
+            hashedPassword = secrets.mailserver.loginAccounts."moss.paul@scorpionresponse.email".hashedPassword;
 
             aliases = [
               "info@scorpionresponse.email"
