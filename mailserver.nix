@@ -1,22 +1,28 @@
+let 
+  secrets = import ./secrets.nix;
+in
 {
-  network.description = "A Simple Mailserver";
+  network = {
+    description = "Mailserver for scorpionresponse.email";
+    enableRollback = true;
+  };
 
   mailserver =
     { config, pkgs, ... }:
-
-    let 
-      secrets = import ./secrets.nix;
-    in
     { 
+      deployment = {
+        targetHost = "mail.scorpionresponse.email";
+        # targetUser = "paul"; # TODO: Not available yet.  Next nixops release
+      };
 
-      deployment.targetHost = "mail.scorpionresponse.email";
-
-      imports = [
-        (builtins.fetchTarball {
-          url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/289f71efe2250e1155b0c74d188699397ba641d8/nixos-mailserver-289f71efe2250e1155b0c74d188699397ba641d8.tar.gz";
-          sha256 = "0lpz08qviccvpfws2nm83n7m2r8add2wvfg9bljx9yxx8107r919";
-        })
-      ];
+      imports = 
+        [ # Include configuration.nix 
+          ./mailserver-nixos/configuration.nix
+          (builtins.fetchTarball {
+            url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/289f71efe2250e1155b0c74d188699397ba641d8/nixos-mailserver-289f71efe2250e1155b0c74d188699397ba641d8.tar.gz";
+            sha256 = "0lpz08qviccvpfws2nm83n7m2r8add2wvfg9bljx9yxx8107r919";
+          })
+        ];
 
       mailserver = {
         enable = true;
