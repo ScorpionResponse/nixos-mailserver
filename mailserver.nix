@@ -1,4 +1,4 @@
-let 
+let
   secrets = import ./secrets.nix;
 in
 {
@@ -9,14 +9,14 @@ in
 
   mailserver =
     { config, pkgs, ... }:
-    { 
+    {
       deployment = {
         targetHost = "mail.scorpionresponse.email";
         # targetUser = "paul"; # TODO: Not available yet.  Next nixops release
       };
 
-      imports = 
-        [ # Include configuration.nix 
+      imports =
+        [ # Include configuration.nix
           ./mailserver-nixos/configuration.nix
           (builtins.fetchTarball {
             url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/289f71efe2250e1155b0c74d188699397ba641d8/nixos-mailserver-289f71efe2250e1155b0c74d188699397ba641d8.tar.gz";
@@ -24,11 +24,21 @@ in
           })
         ];
 
+      networking.firewall = {
+        enable = true;
+        allowedTCPPorts = [
+          25 465 587 #SMTP
+          143 993 # IMAP
+        ];
+      };
+
       mailserver = {
         enable = true;
         fqdn = "mail.scorpionresponse.email";
-        domains = [ 
-          "evaleone.com" 
+        domains = [
+          "evaleone.com"
+          "feelfreepodcast.com"
+          "justfeelfreepodcast.com"
           "scorpionresponse.email"
           "scorpionresponse.me"
           "scorpionresponse.ninja"
@@ -50,8 +60,24 @@ in
             ];
 
             catchAll = [
-              "scorpionresponse.me"
+              "evaleone.com"
+              "feelfreepodcast.com"
+              "justfeelfreepodcast.com"
+              "scorpionresponse.ninja"
+              "scorpionresponse.online"
+              "scorpionresponse.space"
+              "scorpionresponse.website"
+              "scorpionresponse.work"
+              "scorpionresponse.zone"
               "sickassdragons.com"
+              "sociallist.us"
+            ];
+          };
+          "me@scorpionresponse.me" = {
+            hashedPassword = secrets.mailserver.loginAccounts."me@scorpionresponse.me".hashedPassword;
+
+            catchAll = [
+              "scorpionresponse.me"
             ];
           };
         };
