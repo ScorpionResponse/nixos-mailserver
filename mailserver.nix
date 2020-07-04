@@ -37,8 +37,11 @@ in
         fqdn = "mail.scorpionresponse.email";
         domains = [
           "evaleone.com"
+          "fakeendaround.com"
           "feelfreepodcast.com"
+          "freelancefinder.work"
           "justfeelfreepodcast.com"
+          "scorpionresponse.com"
           "scorpionresponse.email"
           "scorpionresponse.me"
           "scorpionresponse.ninja"
@@ -60,9 +63,8 @@ in
             ];
 
             catchAll = [
-              "evaleone.com"
-              "feelfreepodcast.com"
-              "justfeelfreepodcast.com"
+              "scorpionresponse.com"
+              "scorpionresponse.email"
               "scorpionresponse.ninja"
               "scorpionresponse.online"
               "scorpionresponse.space"
@@ -78,6 +80,29 @@ in
 
             catchAll = [
               "scorpionresponse.me"
+            ];
+          };
+          "me@freelancefinder.work" = {
+            hashedPassword = secrets.mailserver.loginAccounts."me@freelancefinder.work".hashedPassword;
+
+            catchAll = [
+              "freelancefinder.work"
+            ];
+          };
+          "me@fakeendaround.com" = {
+            hashedPassword = secrets.mailserver.loginAccounts."me@fakeendaround.com".hashedPassword;
+
+            catchAll = [
+              "fakeendaround.com"
+            ];
+          };
+          "alicia@evaleone.com" = {
+            hashedPassword = secrets.mailserver.loginAccounts."alicia@evaleone.com".hashedPassword;
+
+            catchAll = [
+              "evaleone.com"
+              "feelfreepodcast.com"
+              "justfeelfreepodcast.com"
             ];
           };
         };
