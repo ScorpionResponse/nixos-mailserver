@@ -8,11 +8,7 @@ with pkgs;
 let
   python = python38Full;
 
-  pelican_custom = with python.pkgs; pelican.overridePythonAttrs (
-    old: rec {
-      doCheck = false;
-    }
-  );
+  pelican_custom = import ./pelican.nix {};
 in
 {
   my_blog = stdenv.mkDerivation rec {

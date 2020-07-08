@@ -3,16 +3,10 @@
   }
 }:
 
-with pkgs;
+with pkgs.python38Full.pkgs;
 
-let
-  python = python38Full;
-
-in
-{
-  pelican_custom = with python.pkgs; pelican.overridePythonAttrs (
-    old: rec {
-      doCheck = false;
-    }
-  );
-}
+pelican.overridePythonAttrs (
+  old: rec {
+    doCheck = false;
+  }
+)
