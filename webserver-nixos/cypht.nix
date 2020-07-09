@@ -1,6 +1,3 @@
 { config, pkgs, ... }:
 
-{
-  imports =
-    [];
-}
+{}

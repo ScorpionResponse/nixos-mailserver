@@ -27,5 +27,10 @@ in
     installPhase = ''
       cp -r output $out
     '';
+    meta = {
+      homepage = "https://scorpionresponse.com/";
+      maintainers = [ "Paul Moss me@scorpionresponse.com" ];
+      license = stdenv.lib.licenses.cc-by-sa-40;
+    };
   };
 }

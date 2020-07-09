@@ -18,7 +18,7 @@ in
         imports = [
           # Include configuration.nix
           ./webserver-nixos/configuration.nix
-          ./webserver-nixos/blog.nix
+          # ./webserver-nixos/blog.nix
           ./webserver-nixos/cypht.nix
           ./webserver-nixos/nginx.nix
         ];
