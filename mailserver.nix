@@ -3,7 +3,7 @@ let
 in
 {
   network = {
-    description = "Mailserver for scorpionresponse.email";
+    description = "Mailserver and webserver for scorpionresponse.*";
     enableRollback = true;
   };
 
@@ -11,7 +11,7 @@ in
     { config, pkgs, ... }:
       {
         deployment = {
-          targetHost = "www.scorpionresponse.email";
+          targetHost = "webserver.scorpionresponse.website";
           # targetUser = "paul"; # TODO: Not available yet.  Next nixops release
         };
 
@@ -38,7 +38,7 @@ in
     { config, pkgs, ... }:
       {
         deployment = {
-          targetHost = "mail.scorpionresponse.email";
+          targetHost = "mailserver.scorpionresponse.website";
           # targetUser = "paul"; # TODO: Not available yet.  Next nixops release
         };
 

@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 
 let
-  blog = import ./blog.nix;
+  blog = import ./pelican-blog.nix { pkgs = pkgs; };
 in
 {
   services.nginx = {
