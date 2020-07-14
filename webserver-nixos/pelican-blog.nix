@@ -24,6 +24,7 @@ stdenv.mkDerivation rec {
     make html
   '';
   installPhase = ''
+    mkdir $out
     cp -r output $out
   '';
   meta = {
