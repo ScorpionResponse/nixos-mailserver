@@ -10,10 +10,19 @@ in
   services.roundcube = {
     enable = true;
     hostName = "webmail.scorpionresponse.email";
+    package = pkgs.roundcube.withPlugins (plugins: [ plugins.persistent_login ]);
 
     extraConfig = ''
+      $config['db_dsnw'] = 'pgsql://roundcube@localhost/roundcube';
       $config['archive_type'] = 'year';
       $config['skin'] = 'elastic';
+
+      $config['default_host'] = 'mail.scorpionresponse.email';
+      $config['smtp_server'] = 'tls://%h';
+      $config['smtp_user'] = '%u';
+      $config['smtp_pass'] = '%p';
+
+      $config['identities_level'] = 0;
     '';
 
     plugins = [
@@ -23,13 +32,13 @@ in
       "help"
       "managesieve"
       "password"
+      "persistent_login"
       "zipdownload"
     ];
   };
 
   services.nginx.virtualHosts."webmail.scorpionresponse.email" = {
-    locations."/".root = "${services.roundcube}";
-    enableACME = false;
-    forceSSL = false;
+    enableACME = true;
+    forceSSL = true;
   };
 }

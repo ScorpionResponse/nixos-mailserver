@@ -14,5 +14,8 @@ with (import nixpkgs { inherit system; }); stdenv.mkDerivation rec {
 
   shellHook = ''
     figlet -w200 "Welcome, ScorpionResponse!"
+    if [ -f ~/TODO ]; then
+      cat ~/TODO
+    fi
   '';
 }
