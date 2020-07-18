@@ -6,6 +6,14 @@ in
 {
   services.nginx = {
     enable = true;
+
+    recommendedGzipSettings = true;
+    recommendedTlsSettings = true;
+
+    # appendConfig = ''
+    #  types_hash_max_size: 2048;
+    # '';
+
     virtualHosts."scorpionresponse.com" = {
       locations."/".root = "${blog}";
       enableACME = true;

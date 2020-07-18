@@ -17,7 +17,8 @@ in
       $config['archive_type'] = 'year';
       $config['skin'] = 'elastic';
 
-      $config['default_host'] = 'mail.scorpionresponse.email';
+      $config['default_host'] = 'tls://mail.scorpionresponse.email';
+      $config['default_port'] = 143;
       $config['smtp_server'] = 'tls://%h';
       $config['smtp_user'] = '%u';
       $config['smtp_pass'] = '%p';
@@ -41,4 +42,8 @@ in
     enableACME = true;
     forceSSL = true;
   };
+
+  networking.extraHosts = ''
+    45.79.225.181 mail.scorpionresponse.email
+  '';
 }

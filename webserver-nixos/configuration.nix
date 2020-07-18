@@ -33,6 +33,7 @@
   networking.useDHCP = false;
   networking.usePredictableInterfaceNames = false;
   networking.interfaces.eth0.useDHCP = true;
+  # networking.nameservers = [ "1.1.1.1" "8.8.8.8" "9.9.9.9" ];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

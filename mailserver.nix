@@ -18,7 +18,9 @@ in
         imports = [
           # Include configuration.nix
           ./webserver-nixos/configuration.nix
-          # ./webserver-nixos/blog.nix
+          # Common
+          ./common/fail2ban.nix
+          # Custom
           ./webserver-nixos/postgres.nix
           ./webserver-nixos/webmail.nix
           ./webserver-nixos/nginx.nix
@@ -47,6 +49,9 @@ in
           [
             # Include configuration.nix
             ./mailserver-nixos/configuration.nix
+            # Common
+            ./common/fail2ban.nix
+            # Custom
             (
               builtins.fetchTarball {
                 url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/289f71efe2250e1155b0c74d188699397ba641d8/nixos-mailserver-289f71efe2250e1155b0c74d188699397ba641d8.tar.gz";
