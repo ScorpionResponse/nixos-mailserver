@@ -13,6 +13,7 @@ with (import nixpkgs { inherit system; }); stdenv.mkDerivation rec {
   ];
 
   shellHook = ''
+    export PS1="\n\[\033[1;32m\][nix-shell:\[\033[01;34m\]\w\[\033[1;32m\]]\[\033[0m\]\[\033[36m\]`__git_ps1`\[\033[0m\]\$ "
     figlet -w200 "Welcome, ScorpionResponse!"
     if [ -f ~/TODO ]; then
       cat ~/TODO
