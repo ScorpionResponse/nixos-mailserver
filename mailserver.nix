@@ -52,6 +52,7 @@ in
             # Common
             ./common/fail2ban.nix
             # Custom
+            ./mailserver-nixos/postfix.nix
             (
               builtins.fetchTarball {
                 url = "https://gitlab.com/simple-nixos-mailserver/nixos-mailserver/-/archive/289f71efe2250e1155b0c74d188699397ba641d8/nixos-mailserver-289f71efe2250e1155b0c74d188699397ba641d8.tar.gz";
