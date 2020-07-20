@@ -19,7 +19,7 @@ in
           # Include configuration.nix
           ./webserver-nixos/configuration.nix
           # Common
-          ./common/fail2ban.nix
+          ./common/sshguard.nix
           # Custom
           ./webserver-nixos/postgres.nix
           ./webserver-nixos/webmail.nix
@@ -50,7 +50,7 @@ in
             # Include configuration.nix
             ./mailserver-nixos/configuration.nix
             # Common
-            ./common/fail2ban.nix
+            ./common/sshguard.nix
             # Custom
             ./mailserver-nixos/postfix.nix
             (
