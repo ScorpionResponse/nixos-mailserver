@@ -25,7 +25,7 @@ stdenv.mkDerivation rec {
   '';
   installPhase = ''
     mkdir $out
-    cp -r output $out
+    cp -r output/* $out
   '';
   meta = {
     homepage = "https://scorpionresponse.com/";
