@@ -38,7 +38,7 @@ in
 
 
   mailserver =
-    { config, pkgs, ... }:
+    { config, pkgs, lib, ... }:
       {
         deployment = {
           targetHost = "mailserver.scorpionresponse.website";
@@ -73,6 +73,16 @@ in
             143
             993
           ];
+        };
+
+        # https://github.com/NixOS/nixpkgs/issues/61230
+        networking.networkmanager.dns = lib.mkForce "none"; # networkmaneger not to overwrite /etc/resolv.conf
+        services.resolved.enable = lib.mkForce false; # just to be sure
+        environment.etc."resolv.conf" = {
+          text = lib.optionalString (config.networking.nameservers != []) (
+            lib.concatMapStrings (ns: "nameserver ${ns}\n") config.networking.nameservers
+          );
+          mode = "0444";
         };
 
         mailserver = {
