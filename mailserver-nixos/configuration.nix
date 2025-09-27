@@ -1,15 +1,15 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
@@ -33,7 +33,7 @@
   networking.useDHCP = false;
   networking.usePredictableInterfaceNames = false;
   networking.interfaces.eth0.useDHCP = true;
-  networking.nameservers = [ "1.1.1.1" "8.8.8.8" "9.9.9.9" ];
+  networking.nameservers = ["1.1.1.1" "8.8.8.8" "9.9.9.9"];
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -101,7 +101,7 @@
   users.users.paul = {
     isNormalUser = true;
     home = "/home/paul";
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = ["wheel" "networkmanager"];
     openssh.authorizedKeys.keys = [
       "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCtjudDR2MY7i3wnJQ4C3K2qCVjtfRi9UOeBZCLN+uYfbP2Vr2e5itiiTFqsj/Q2/BG41slwT/E/txW1fkz2UQYGIzGbOW2wUI3iE6MdcXwc4MdN/iiVNIBr2H28EDhKK6vA2ZPIJfv7+BELDuupxw7ep8Eul5KUrsSktOowWooT2whWMxEUIeErGrB+wgaqW379xt4CsiMLtV87le2PcjMgHmEOVLjT3c2z2phi8s04uGQe4LYbc/q3WmZAqHC26JJ0AHpMabLRWS/5/6DMc6AogwLH+6VRrTwy5xjf3tuDNbDSiO/g1qWHY/NMiOVX0iSSgywEEideaKCh15IiGYf
     phile@DESKTOP-N3LEB91"
