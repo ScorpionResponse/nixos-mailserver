@@ -21,7 +21,7 @@ with (import nixpkgs {
       bind.dnsutils
       figlet
       jq
-      nixops
+      # nixops
       git-crypt
     ];
 
